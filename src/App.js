@@ -10,7 +10,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearch = (term) => {
-        setSearchTerm(term); // Update the search term when the user types
+        setSearchTerm(term.toLowerCase()); // Update the search term when the user types
 
     }
 
@@ -21,10 +21,10 @@ function App() {
         <div>
           <Navbar onSearch={handleSearch}/>
           <Routes>
-            <Route path="/" element={<PhoneListingPage />} />
-            <Route path='/add-phone' element={<AddPhone />} searchTerm={searchTerm} />
-            <Route path="/about" element={<About />} />
-            <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+              <Route path="/" element={<PhoneListingPage searchTerm={searchTerm} />} />  {/* Pass searchTerm here */}
+              <Route path="/add-phone" element={<AddPhone />} />
+              <Route path="/about" element={<About />} />
+              <Route path="*" element={<h1>404 - Page Not Found</h1>} />
           </Routes>
         </div>
       </Router>
